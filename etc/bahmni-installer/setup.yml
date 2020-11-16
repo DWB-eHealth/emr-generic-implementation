@@ -1,0 +1,7 @@
+# To see the list of valid variables in Bahmni please refer to:
+# https://bahmni.atlassian.net/wiki/display/BAH/List+Of+Configurable+Installation+Variables
+
+timezone: Canada/Eastern
+implementation_name: generic
+selinux_state: disabled
+mysql_version: 5.6.48

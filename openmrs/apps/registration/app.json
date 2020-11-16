@@ -1,0 +1,133 @@
+{
+        "id": "bahmni.registration",
+        "instanceOf":"bahmni.template.registration",
+        "description": "Bahmni Patient Registration App",
+        "extensionPoints": [
+            {
+                "id": "org.bahmni.registration.patient.search.result.action",
+                "description": "Bahmni Patient Search Result Action"
+            },
+            {
+                "id": "org.bahmni.registration.patient.next",
+                "description": "After Bahmni Patient Registration, forward url configuration"
+            },
+            {
+                "id": "org.bahmni.registration.navigation",
+                "description": "Navigation within regsitration first and second page"
+            },
+            {
+                "id": "org.bahmni.registration.conceptSetGroup.observations",
+                "description": "Registration Second Page Forms"
+            }
+        ],
+        "contextModel": [
+            "patientUuid",
+            "activeVisitUuid"
+        ],
+        "config" : {
+          "mandatoryPersonAttributes" : [
+                "Status of Patient",
+                "Patient phone number"
+            ],
+          "patientInformation": {
+            "Additional Information": {
+                "title": "Additional Information",
+                "tranlsationkey": "REGISTRATION_TITLE_ADDITIONAL_PATIENT",
+                "attributes": [
+                ],
+                "expanded": true
+            },
+              "Address Information": {
+                "title": "Address Information",
+                "translationKey": "REGISTRATION_ADDRESS_INFORMATION",
+                "attributes": [
+                    "Status of Patient",
+                    "Camp location",
+                    "Mazhi"
+                ],
+                "expanded": true
+              },
+              "Other Information": {
+                  "title": "Other Information",
+                  "translationKey": "REGISTRATION_OTHER_INFORMATION",
+                  "attributes": [
+                      "Patient phone number",
+                      "Previous MSF ID"
+                  ],
+                  "expanded": true
+              },
+              "Emergency or Caretaker contact details": {
+                  "title" : "Emergency or Caretaker contact details",
+                  "translationKey": "REGISTRATION_EMERGENCY_CONTACT_DETAILS",
+                  "attributes": [
+                    "Full name",
+                    "Relationship with the patient",
+                    "Phone number",
+                    "Address"
+                  ],
+                  "expanded":true
+              }
+          },
+            "autoCompleteFields":["familyName"],
+            "defaultIdentifierPrefix": "BD",
+            "defaultVisitType": "OPD",
+            "searchByIdForwardUrl": "/patient/{{patientUuid}}",
+            "showMiddleName": false,
+            "showLastName": true,
+            "isLastNameMandatory": true,
+            "showSaveConfirmDialog": false,
+            "showBirthTime": false,
+            "printOptions": [
+                {
+                    "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
+                    "shortcutKey": "l"
+                },
+                {
+                    "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print.html",
+                    "shortcutKey": "p"
+                },
+                {
+                    "translationKey": "REGISTRATION_PRINT_SUPPLEMENTAL_PAPER",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/supplementalPaperLayout/print.html",
+                    "shortcutKey": "r"
+                },
+                {
+                    "translationKey": "REGISTRATION_PRINT_WITH_BARCODE",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/printWithBarcode.html",
+                    "shortcutKey": "c"
+                }
+            ],
+            "fieldValidation" : {
+                "familyName" : {"pattern" : "[a-zA-Z]{0,50}", "errorMessage" : "Should not exceed 50 characters"},
+                "givenName" : {"pattern" : "[a-zA-Z]{0,50}", "errorMessage" : "Should not exceed 50 characters"},
+                "Camp location" : {"pattern" : "^[a-zA-Z0-9_+-@]{1,55}$.*$", "errorMessage" : "Should not exceed 55 characters"},
+                "Mazhi" : {"pattern" : "^[a-zA-Z0-9_+-@]{1,55}$.*${1,55}$.*$", "errorMessage" : "Should not exceed 55 characters"},
+                "Patient phone number" :{"pattern" : "^[+][0-9]{0,}$","errorMessage" : "Should contain country code (+) and phone number"},
+                "Previous MSF ID" : {"pattern" : "^[a-zA-Z0-9_+-@]{1,55}$.*$", "errorMessage" : "Should not exceed 55 characters"},
+                "Full name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "Phone number" :{"pattern" : "^[+][0-9]{0,}$","errorMessage" : "Should contain country code (+) and phone number"},
+                "Relationship with the patient" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "Address" : {"pattern" : "^[a-zA-Z0-9_+-@]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"}
+            },
+            "patientSearchResults": {
+                  "personAttributes": {
+                      "fields": [
+                        "Status of Patient",
+                        "Patient phone number"
+
+                      ]
+                  }
+              },
+            "patientSearch": {
+                "customAttributes": {
+                    "label": "Previous MSF ID",
+                    "placeholder": "Previous MSF ID",
+                    "fields": [
+                      "Previous MSF ID"
+                    ]
+                }
+            }
+        }
+}
